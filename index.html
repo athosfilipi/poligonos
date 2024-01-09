@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="index.css"/>
+    <style>
+    * {
+        margin: 0;
+	    padding: 0;
+	    border: 0;
+    }  
+    :root {        
+        --base-ultra-dark: black;
+        --border-color: rgb(0,255,255,1);
+        --border-width: 3px 0px -1px 3px;
+        --background-color: var(--base-ultra-dark);
+        /* --edge: polygon(1.2em 100em, 1em 12.9em, 0.0em 11.0em, 0em 2.3em, 1.1em 1.30em, 6em 1.30em, 7em 0em, 14.5em 0em, 14.5em 18.78em); */
+        --edge: polygon(1.0em 18em, 1em 12.9em, 0.0em 11em, 0em 2.3em, 1.1em 1.3em, 9em 1.3em, 10em 0em, 14.5em 0em, 14.5em 18.78em);
+        
+        /* box */        
+        --box-width: var(--content-width);
+        --box-padding: 10px;
+        --box-margin: 10px;        
+        
+        /* content */
+        --content-width: 1200px;
+
+        --text-color: white;
+    }
+    /* ******************** */
+    html {
+        background: var(--base-ultra-dark);
+    }
+    /* ******************** */
+    a {
+        color: inherit; /* blue colors for links too */
+        text-decoration: inherit; /* no underline */
+    }
+    /* ******************** */
+    .edge {
+        background-color: var(--border-color);
+        position: relative;
+        isolation: isolate;        
+        height: 280px;
+        width: 300px;                  
+        color: var(--text-color);         
+        clip-path: var(--edge);        
+    }    
+    .edge::before {
+        content: '';
+        margin-right: -1px;
+        background-color: var(--background-color);
+        inset: 2px 0px 0px 2px;
+        margin-left: 2px;        
+        position: absolute;
+        z-index: 1;
+        clip-path: var(--edge);                
+    }
+    /* ******************** */
+    /* ******************** */
+    #superiorEsquerdo {
+        transform: rotateZ(0deg);        
+        position: absolute;
+        left: 0;       
+        top: 0;        
+        z-index: -1;
+    }
+    /* ******************** */
+    #superiorDireito {
+        transform: rotateY(180deg);        
+        position: absolute;
+        right: 0;       
+        top: 0;
+        z-index: -1;
+    }
+    /* ******************** */
+    #inferiorEsquerdo {        
+        transform: rotateY(180deg);
+        transform: rotateZ(180deg);
+        transform: rotateX(180deg);
+        position: absolute;
+        left: 0;       
+        bottom: 0;
+        z-index: -1;
+    }
+    /* ******************** */
+    #inferiorDireito {        
+        transform: rotateZ(180deg);
+        position: absolute;
+        right: 0;       
+        bottom: 0;
+        z-index: -1;
+    }
+    /* ******************** */
+    /* ************************ */
+    #box {
+        position: relative;        
+        box-sizing: border-box;
+        border: 2px solid var(--border-color);        
+        margin: var(--box-margin);
+        border-radius: 0px 8px 20px 10px;        
+        width: calc(var(--box-padding) * 2.2 + var(--box-width));
+        padding: var(--box-padding);
+    }    
+    /* ******************** */
+    #box #detalheEsquerdoSuperiorCima {        
+        background: var(--border-color);
+        position: absolute;
+        left: -2px;
+        top: -3px;        
+        min-width: 20px;
+        min-height: 6px;
+        box-shadow: 1px 0px 6px 1px var(--border-color);
+        z-index: 4;
+    }
+    #detalheEsquerdoSuperiorCimaBack {                        
+        position: absolute;       
+        left: -2px; 
+        top: -3px;
+        min-width: 20px;
+        min-height: 6px;
+        border-right: 6px solid var(--base-ultra-dark);
+        z-index: 3;        
+    }
+    /* ******************** */
+    #detalheEsquerdoSuperiorBaixo {        
+        background: var(--border-color);
+        position: absolute;
+        left: -2px;
+        top: -3px;        
+        min-width: 6px;
+        min-height: 20px;
+        box-shadow: 0px 1px 6px 1px var(--border-color);
+        z-index: 4;
+    }
+
+    #detalheEsquerdoSuperiorBaixoBack {                        
+        position: absolute;       
+        left: -2px; 
+        top: -3px;
+        min-width: 6px;
+        min-height: 20px;
+        border-bottom: 6px solid var(--base-ultra-dark);
+        z-index: 3;        
+    }   
+    /* ******************** */
+    #content {
+        box-sizing: border-box;
+        position: relative;
+        height: 700px;
+        width: var(--content-width);
+        border: 1px solid rgb(0, 0, 255, 0);
+        color: var(--text-color);        
+    }    
+    /* ******************** */    
+    #content > p#title {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        margin-top: 0.2em;        
+        text-align: center;
+        font-size: 22px;
+        font-weight: 800;        
+    }
+    #content > p#title::before {
+        content: '';
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-bottom: 2px dashed var(--border-color);
+        
+        width: 200px;        
+        z-index: 100;
+    }
+    #content > p#title::after {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-bottom: 1px solid var(--border-color);
+        
+        width: 200px;        
+        z-index: 100;
+    }
+    /* ******************** */    
+    #content > p#titleFooter {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 16px;        
+        font-weight: 600;        
+        line-height: 10px;
+    }
+    #content > p#titleFooter::after {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-bottom: 1px solid var(--border-color);
+        
+        width: 200px;        
+        z-index: 100;
+    }
+    
+    /* ******************** */
+    #content > p#left {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translateX(50%);                
+        text-align: center;        
+        font-weight: 800;
+    }
+    
+    /* ******************** */
+    #content > p#right {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translateX(-50%);                
+        text-align: center;        
+        font-weight: 800;
+    }
+    /* ******************** */
+    #content > p#footerLeft {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateX(100%);                
+        text-align: center;        
+        font-weight: 800;
+        line-height: 10px;
+    }
+    /* ******************** */
+    #content > p#footerRight {
+        position: absolute;                
+        right: 0;
+        bottom: 0;
+        transform: translateX(-50%);                
+        text-align: center;        
+        font-weight: 800;
+    }
+    /* ******************** */    
+    #contentInterno {
+        position: relative;
+        height: 88%;
+        width: 90%;
+        margin: 3em 2em 0em 2em;
+        color: var(--text-color);        
+        border-radius: 1%;
+        overflow: auto;
+        padding-right: 20px;
+    }
+    /* ******************** */
+    
+    
+
+    </style>    
+</head>
+<body>
+    <br />    
+    <div id="box">        
+        <div>
+            <div id="detalheEsquerdoSuperiorCimaBack"></div>
+            <div id="detalheEsquerdoSuperiorCima"></div>
+            <div id="detalheEsquerdoSuperiorBaixo"></div>
+            <div id="detalheEsquerdoSuperiorBaixoBack"></div>
+        </div>
+        <div id="content">   
+            <p id="title">• só demorou 10 anos ♥</p>         
+            <p id="titleFooter">Template by Athos Filipi • 2024</p>         
+            <p id="left">• v 1.0.0  •</p>         
+            <p id="right">Athos Filipi</p>         
+            <p id="footerLeft">
+                <a href="https://github.com/athosfilipi/" target="_blank">GitHub</a>
+            </p>         
+            <p id="footerRight">Athos Filipi</p>         
+            <div>
+                <div id="superiorEsquerdo" class="edge"></div>
+                <div id="inferiorEsquerdo" class="edge"></div>
+                <div id="superiorDireito" class="edge"></div>
+                <div id="inferiorDireito" class="edge"></div>            
+            </div>
+            <div id="contentInterno">      
+                <h3 style="text-align: center;">
+                    Descrição do projeto
+                </h3>
+                <br />
+                <p style="text-align: left">
+                    Este é um projeto foi feito em 1 dia cujo a realização é 
+                    um sonho de quando eu era um jovem de 14 anos e almejava criar layouts com curvas de forma na qual
+                    obtivesse um resultado mais 'tech'.
+                </p>
+                <br />
+                <p style="text-align: left">
+                    A ideia do uso deste projeto é que esta seja apenas uma parte de um layout maior
+                </p>
+                <br />
+                <p style="text-align: center;">                
+                    Claramente existe uma necessidade de melhora no html semantico,
+                    principalemnte nesta área de texto
+                    na qual espero recriar melhor em react.js
+                </p>
+                <br />
+                <p style="text-align: center;">
+                    Para modificar o tamanho, largura ou texto, há variáveis em css que devem ajudar.
+                </p>
+                <br />
+                <br />
+                <h3 style="text-align: center;">
+                    Aqui estão os links que me foram úteis na criação do mesmo: 
+                </h3>                
+                <br />
+                <p style="text-align: center;">
+                    • <a href="https://www.youtube.com/watch?v=Q79XId-gs6c">
+                        How to Create a Slanted Edge Effect With Simple CSS Tricks
+                    </a>
+                </p>
+                
+              
+              <p style="text-align: center;">
+                    • <a href="https://www.youtube.com/watch?v=Q-7bVgZQsjk">
+                        CSS clip-path: o tutorial que você precisava
+                    </a>
+                </p>                    
+                <br />
+                <br />
+              
+                
+                <h3 style="text-align: center;">Autor: Athos Filipi •                 
+                <u>
+                    <a href="https://github.com/athosfilipi/" target="_blank">GitHub</a>
+                </u>
+                </h3>
+                               
+                <br /><br />
+                <h2 style="text-align: center;">Daqui pra baixo é só pra encher linguiça</h2>
+                <br />
+                <p style="text-align: left;">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+                <br />                
+                <br />
+                <h1 style="text-align: center;">Acabou =}</h1>
+                <br />
+            </div>        
+        </div>        
+    </div>       
+    
+    </body>
+    </html>

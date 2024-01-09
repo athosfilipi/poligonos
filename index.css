@@ -1,0 +1,6 @@
+div {
+    background: red;
+    height: 200px;
+    width: 300px;
+    /* clip-path: polygon(0 19%, 9% 11%, 55% 11%, 75% 100%, 10% 100%, 10% 81%, 1% 68%); */
+}
